@@ -7,6 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.aventstack.extentreports.Status;
+import com.extentListeners.ExtentListeners;
+
 public class BaseCar {
 
 	WebDriver driver;
@@ -20,7 +23,8 @@ public class BaseCar {
 	WebElement cartype;
 	
 	public String getCarTitle() {
-			return cartype.getText();
+		ExtentListeners.test.log(Status.INFO, "Validating Brand of Cars: "+cartype.getText());
+		return cartype.getText();
 	}
 	
 	
@@ -32,8 +36,10 @@ public class BaseCar {
 	
 	public void printCars() {
 		
+		ExtentListeners.test.log(Status.INFO, "Received list of "+ carName.size()+" car names and "+carprice.size()+" car prices" );
+				
 		for(int i=0; i<carprice.size(); i++) {
-			
+			ExtentListeners.test.log(Status.INFO, "Car Name is: "+carName.get(i).getText()+" and price is: "+carprice.get(i).getText() );
 			System.out.println("Car Name is: "+carName.get(i).getText()+" and price is: "+carprice.get(i).getText());
 					
 		}

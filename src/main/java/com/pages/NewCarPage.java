@@ -4,7 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import com.aventstack.extentreports.Status;
 import com.base.BasePage;
+import com.extentListeners.ExtentListeners;
 
 public class NewCarPage extends BasePage {
 
@@ -16,6 +18,7 @@ public class NewCarPage extends BasePage {
 	WebElement toyota;
 	
 	public ToyotaCarPage gotoToyota() {
+		ExtentListeners.test.log(Status.INFO,"Clicking on "+toyota.getText());
 		toyota.click();
 		return new ToyotaCarPage(driver);
 	}
@@ -24,6 +27,7 @@ public class NewCarPage extends BasePage {
 	WebElement tata;
 	
 	public TataCarPage gotoTata() {
+		ExtentListeners.test.log(Status.INFO,"Clicking on "+tata.getText());
 		tata.click();
 		return new TataCarPage(driver);
 	}
@@ -32,6 +36,7 @@ public class NewCarPage extends BasePage {
 	WebElement kia;
 	
 	public KiaCarPage gotoKia() {
+		ExtentListeners.test.log(Status.INFO,"Clicking on "+kia.getText());
 		kia.click();
 		return new KiaCarPage(driver);
 	}

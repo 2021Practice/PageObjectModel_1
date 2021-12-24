@@ -38,7 +38,7 @@ public class FindNewCarTest extends BaseTest {
 		}
 		
 		System.out.println(BasePage.baseCar.getCarTitle());
-		Assert.assertEquals(BasePage.baseCar.getCarTitle(), data.get("expectedTitle"));	
+		Assert.assertEquals(BasePage.baseCar.getCarTitle(), data.get("expectedTitle"), "Title did not match");	
 		
 		BasePage.baseCar.printCars();
 		

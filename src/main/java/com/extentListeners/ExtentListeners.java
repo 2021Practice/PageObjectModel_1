@@ -37,7 +37,7 @@ public class ExtentListeners implements ITestListener {
 
 	public void onTestSuccess(ITestResult result) {
 
-		System.out.println("Test success Listener: "+result.getMethod().getMethodName());
+	//	System.out.println("Test success Listener: "+result.getMethod().getMethodName());
 		String methodName=result.getMethod().getMethodName();
 		String logText="<b>"+"TEST CASE:- "+ methodName+ " PASSED"+"</b>";		
 		Markup m=MarkupHelper.createLabel(logText, ExtentColor.GREEN);
@@ -48,13 +48,23 @@ public class ExtentListeners implements ITestListener {
 
 	public void onTestFailure(ITestResult result) {
 
-		System.out.println("Test failure Listener: "+result.getMethod().getMethodName());
+	//	System.out.println("Test failure Listener: "+result.getMethod().getMethodName());
 		
 		String methodName = result.getMethod().getMethodName();
-		String excepionMessage=Arrays.toString(result.getThrowable().getStackTrace());
+		
+		String excepionMessage = result.getThrowable().getMessage();
+		
+		
 		testReport.get().fail("<details>" + "<summary>" + "<b>" + "<font color=" + "red>" + "Exception Occured:Click to see"
 				+ "</font>" + "</b >" + "</summary>" +excepionMessage.replaceAll(",", "<br>")+"</details>"+" \n");
 		
+		excepionMessage=Arrays.toString(result.getThrowable().getStackTrace()).replaceAll(",", "\n");
+		System.out.println("===========");
+		System.out.println("Exception from Listener : "+excepionMessage);
+		System.out.println("===========");
+//		testReport.get().fail("<details>" + "<summary>" + "<b>" + "<font color=" + "red>" + "Exception Occured:Click to see"
+//				+ "</font>" + "</b >" + "</summary>" +excepionMessage.replaceAll(",", "<br>")+"</details>"+" \n");
+//		
 		try {
 
 			ExtentManager.captureScreenshot();
@@ -67,12 +77,13 @@ public class ExtentListeners implements ITestListener {
 		String logText="<b>"+"TEST CASE:- "+ methodName+ " FAILED"+"</b>";		
 		
 		Markup m = MarkupHelper.createLabel(logText, ExtentColor.RED);
-		testReport.get().log(Status.FAIL, m);
+	//	testReport.get().log(Status.FAIL, m);
+		testReport.get().fail(m);
 
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		System.out.println("Test skip Listener: "+result.getMethod().getMethodName());
+	//	System.out.println("Test skip Listener: "+result.getMethod().getMethodName());
 		
 		String methodName=result.getMethod().getMethodName();
 		String logText="<b>"+"TEST CASE:- "+ methodName+ " SKIPPED"+"</b>";		
